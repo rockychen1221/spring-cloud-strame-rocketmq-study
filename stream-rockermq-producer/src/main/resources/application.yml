@@ -1,0 +1,24 @@
+server:
+  port: 8777
+
+spring:
+  application:
+    name: spring-cloud-stream-rockermq-producer
+  cloud:
+    stream:
+      rocketmq:
+        binder:
+          name-server: 192.168.1.203:7121;192.168.1.203:7122;192.168.1.203:7123
+        bindings:
+          output1:
+            producer:
+              group: binder-group
+              sync: true
+      bindings:
+        output1:
+          destination: test-topic
+          content-type: application/json
+management:
+  endpoint:
+    health:
+      show-details: always
